@@ -1,16 +1,16 @@
 @font-face {
     font-family: Gordita;
-    src: url(Gordita-Black.otf);
+    src: url(Gordita-Font/Gordita-Black.otf);
 }
 
 @font-face {
     font-family: Gordita Reg;
-    src: url(Gordita-Bold.otf);
+    src: url(Gordita-Font/Gordita-Bold.otf);
 }
 
 @font-face {
     font-family: Gordita Thin;
-    src: url(Gordita-Medium.otf);
+    src: url(Gordita-Font/Gordita-Medium.otf);
 }
 
 :root
@@ -129,4 +129,11 @@
     font-family: Gordita Thin;
     color: #fafafa;
     background-color: #7b2cbf;
+}
+
+#credits
+{
+    font-family: Gordita Reg;
+    color: #fafafa;
+    text-align: center;
 }
