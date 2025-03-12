@@ -1,16 +1,16 @@
 @font-face {
     font-family: Gordita;
-    src: url(Gordita-Font/Gordita-Black.otf);
+    src: url(Gordita-Black.otf);
 }
 
 @font-face {
     font-family: Gordita Reg;
-    src: url(Gordita-Font/Gordita-Bold.otf);
+    src: url(Gordita-Bold.otf);
 }
 
 @font-face {
     font-family: Gordita Thin;
-    src: url(Gordita-Font/Gordita-Medium.otf);
+    src: url(Gordita-Medium.otf);
 }
 
 :root
