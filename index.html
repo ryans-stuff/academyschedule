@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Academy School Schedule</title>
+        <meta name="description" content="School Schedule for Uniondale">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b6bdc544-9c2b-42dc-9e29-5e9508472b63/d5idnkk-885e95e6-550d-426d-8755-a91c974444e0.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I2YmRjNTQ0LTljMmItNDJkYy05ZTI5LTVlOTUwODQ3MmI2M1wvZDVpZG5ray04ODVlOTVlNi01NTBkLTQyNmQtODc1NS1hOTFjOTc0NDQ0ZTAuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Q-wDn02leAyiysuj4Yn3k_iWFfkJ2AbNuYhk1s3gTng" type="image/x-icon">
+    </head>
+    <body>
+        <div id="schedules">
+            <details id="schedule-container">
+                <summary id="schedule-text">Schedules</summary>
+                <button class="sched-btn" onclick="enabledSchedule(normalSchedule)">Normal Schedule</button>
+                <button class="sched-btn" onclick="enabledSchedule(earlyWednesday)">Early Wednesday</button>
+                <button class="sched-btn" onclick="enabledSchedule(mockTest)">Mock Test Schedule</button>
+            </details>
+        </div>
+        <h1 id="title">School Schedule</h1>
+        <h1 id="time">The time is</h1>
+        <h1 id="timeElapsed">There are minutes until 7th period</h1>
+        <h1 id="dayEnd"></h1>
+        <h3 id="periodEnd"></h3>
+        <h3 id="dayEnd"></h3>
+        <h2 id="tenminutes">Bathrooms are open!</h2>
+
+        
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="index.js" async defer></script>
+    </body>
+</html>

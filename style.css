@@ -1,0 +1,132 @@
+@font-face {
+    font-family: Gordita;
+    src: url(Gordita-Font/Gordita-Black.otf);
+}
+
+@font-face {
+    font-family: Gordita Reg;
+    src: url(Gordita-Font/Gordita-Bold.otf);
+}
+
+@font-face {
+    font-family: Gordita Thin;
+    src: url(Gordita-Font/Gordita-Medium.otf);
+}
+
+:root
+{
+    background-color: #1a1a1a;
+    margin: 0 0 0 0;
+}
+
+#title
+{
+    font-family: Gordita;
+    color: transparent;
+    width: 70%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    -webkit-text-stroke-color: #fafafa;
+    -webkit-text-stroke-width: 3px;
+    filter: drop-shadow(0px 15px 3px #0f0f0f);
+    font-size: 84px;
+    font-weight: 900;
+    text-align: center;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) .35s;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#title:hover
+{
+    filter: drop-shadow(0px 30px 0px #0f0f0f);
+    font-size: 92px;
+}
+
+#time
+{
+    font-family: Gordita Reg;
+    text-align: center;
+    color: #fafafa;
+    font-size: 48px;
+    font-weight: bolder;
+}
+
+
+#timeElapsed
+{
+    font-family: Gordita Reg;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    color: #fafafa;
+    margin-right: auto;
+    font-weight: 700;
+    font-size: 48px;
+    width: 70%;
+}
+
+#tenminutes
+{
+    color: aquamarine;
+    font-family: Gordita Reg;
+    filter: drop-shadow(0px 0px 5px #0f0f0f);
+    display: flex;
+    font-size: 36px;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    top: -3rem;
+    margin-left: auto;
+    margin-right: auto;
+    transition: ease-in-out 1s;
+
+}
+
+#periodEnd
+{
+    color: white;
+    font-family: Gordita Reg;
+    filter: drop-shadow(0px 0px 5px #0f0f0f);
+    display: flex;
+    font-size: 36px;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    transition: ease-in-out 1s;
+}
+
+#dayEnd
+{
+    color: white;
+    font-family: Gordita Reg;
+    filter: drop-shadow(0px 0px 5px #0f0f0f);
+    display: flex;
+    font-size: 36px;
+    width: 70%;
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    transition: ease-in-out 1s;
+}
+
+#schedule-text
+{
+    font-family: Gordita Reg;
+    color: #fafafa;
+    cursor: pointer;
+}
+
+.sched-btn
+{
+    font-family: Gordita Thin;
+    color: #fafafa;
+    background-color: #7b2cbf;
+}
