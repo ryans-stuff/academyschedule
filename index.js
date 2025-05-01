@@ -8,6 +8,7 @@ let dayEnded = false
 
 const weekDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const normalSchedule = {0: 8*3600, 1: ((8*3600)+(48*60)), 2: ((9*3600)+(45*60)), 3: ((10*3600)+(37*60)), 4:((11*3600)+(29*60)), 5: ((12*3600)+(21*60)), 6: ((13*3600)+(13*60)), 7: ((14*3600)+(5*60)), 8: ((14*3600)+(57*60)), 9: ((15*3600)+(49*60))}
+const threepmSchedule = {0: 8*3600, 1: ((8*3600)+ (42*60)), 2: ((9*3600)+(28*60)), 3: ((10*3600)+(14*60)), 4: ((11*3600)), 5: ((11*3600)+(46*60)), 6: ((12*3600)+(32*60)), 7: ((13*3600)+(18*60)), 8: ((14*3600)+(4*60)), 9: ((14*3600)+(50*60))}
 const earlyWednesday = {0: 8*3600, 1:((8*3600)+(35*60)), 2: ((9*3600)+(14*60)), 3: ((9*3600)+(53*60)), 4: ((10*3600)+(32*60)), 5: ((11*3600)+(11*60)), 6:((11*3600)+(50*60)), 7: ((12*3600)+(29*60)), 8:((13*3600)+(8*60)), 9: ((13*3600)+(47*60))}
 const mockTest = {0: 8*3600, 1: ((8*3600)+(40*60)), 2: ((9*3600)+(20*60)), 3: ((10*3600)+(15*60)), 4: ((13*3600)+(45*60))}
 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -19,8 +20,10 @@ function enabledSchedule(sched){
     console.log(sched)
     if (sched == earlyWednesday){
         endOfDay = 14 * 3600
-    } else if (sched == normalSchedule){
+    } else if (sched == normalSchedule || sched == mockTest){
         endOfDay = 16*3600
+    } else if (sched == threepmSchedule){
+        endOfDay = 15*3600
     }
 }
 
