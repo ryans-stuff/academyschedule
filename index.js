@@ -8,11 +8,12 @@ let dayEnded = false
 
 const weekDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const normalSchedule = {0: 8*3600, 1: ((8*3600)+(48*60)), 2: ((9*3600)+(45*60)), 3: ((10*3600)+(37*60)), 4:((11*3600)+(29*60)), 5: ((12*3600)+(21*60)), 6: ((13*3600)+(13*60)), 7: ((14*3600)+(5*60)), 8: ((14*3600)+(57*60)), 9: ((15*3600)+(49*60))}
-const threepmSchedule = {0: 8*3600, 1: ((8*3600)+ (42*60)), 2: ((9*3600)+(28*60)), 3: ((10*3600)+(14*60)), 4: ((11*3600)), 5: ((11*3600)+(46*60)), 6: ((12*3600)+(32*60)), 7: ((13*3600)+(18*60)), 8: ((14*3600)+(4*60)), 9: ((14*3600)+(50*60))}
 const earlyWednesday = {0: 8*3600, 1:((8*3600)+(35*60)), 2: ((9*3600)+(14*60)), 3: ((9*3600)+(53*60)), 4: ((10*3600)+(32*60)), 5: ((11*3600)+(11*60)), 6:((11*3600)+(50*60)), 7: ((12*3600)+(29*60)), 8:((13*3600)+(8*60)), 9: ((13*3600)+(47*60))}
-const mockTest = {0: 8*3600, 1: ((8*3600)+(40*60)), 2: ((9*3600)+(20*60)), 3: ((10*3600)+(15*60)), 4: ((13*3600)+(45*60))}
+const threepmSchedule = {0: 8*3600, 1: ((8*3600)+ (42*60)), 2: ((9*3600)+(28*60)), 3: ((10*3600)+(14*60)), 4: ((11*3600)), 5: ((11*3600)+(46*60)), 6: ((12*3600)+(32*60)), 7: ((13*3600)+(18*60)), 8: ((14*3600)+(4*60)), 9: ((14*3600)+(50*60))}
+const mockTest = {0: 8*3600, 1: ((8*3600)+(40*60)), 2: ((9*3600)+(20*60)), 3: ((10*3600)), 4: ((13*3600)+(45*60))}
 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 let scheduleUsed = normalSchedule
+let bigClock = false
 const ewBtn = document.getElementById("ew")
 
 function enabledSchedule(sched){
@@ -65,7 +66,48 @@ function getNextScheduledPeriod(schedule) {
       time: nextTime
     };
   }
-  
+
+  function bigTime(){
+    if (!bigClock){
+        let timeelapsedLabel = document.getElementById("timeElapsed")
+        let timeLabel = document.getElementById("time")
+        let title = document.getElementById("title")
+        let credits = document.getElementById("credits")
+        let bathroom = document.getElementById("tenminutes")
+        const periodEndLabel = document.getElementById("periodEnd")
+        const dayEndLabel = document.getElementById("dayEnd")
+        const bigClockLabel = document.getElementById("bigClockLabel")
+        bigClock = true
+
+        bigClockLabel.style.display = "flex"
+        timeelapsedLabel.style.display = "none"
+        timeLabel.style.display = "none"
+        bathroom.style.display = "none"
+        periodEndLabel.style.display = "none"
+        dayEndLabel.style.display = "none"
+        title.style.display = "none"
+        credits.style.display = "none"
+    } else {
+        let timeelapsedLabel = document.getElementById("timeElapsed")
+        let timeLabel = document.getElementById("time")
+        let title = document.getElementById("title")
+        let credits = document.getElementById("credits")
+        let bathroom = document.getElementById("tenminutes")
+        const periodEndLabel = document.getElementById("periodEnd")
+        const dayEndLabel = document.getElementById("dayEnd")
+        const bigClockLabel = document.getElementById("bigClockLabel")
+        bigClock = false
+
+        bigClockLabel.style.display = "none"
+        timeelapsedLabel.style.display = "flex"
+        timeLabel.style.display = "block"
+        bathroom.style.display = "flex"
+        periodEndLabel.style.display = "flex"
+        dayEndLabel.style.display = "flex"
+        title.style.display = "flex"
+        credits.style.display = "block"
+    }
+  }
 
 setInterval(() => {
     let timeelapsedLabel = document.getElementById("timeElapsed")
@@ -73,6 +115,7 @@ setInterval(() => {
     let bathroom = document.getElementById("tenminutes")
     const periodEndLabel = document.getElementById("periodEnd")
     const dayEndLabel = document.getElementById("dayEnd")
+    const bigClockLabel = document.getElementById("bigClockLabel")
 
     let time = new Date();
     let timeMinutes = time.getMinutes();
@@ -108,13 +151,16 @@ setInterval(() => {
     }
     if (afternoon) {
             timeLabel.innerHTML = `The time is ${timeHours}:${String(timeMinutes).padStart(2, '0')} pm. <br>Today is ${weekDays[time.getDay()]} ${month[time.getMonth()]} ${time.getDate()}, ${time.getFullYear()}`
+            bigClockLabel.innerHTML = `${timeHours}:${String(timeMinutes).padStart(2, '0')} <span>:${String(timeSeconds).padStart(2, "0")}</span>&nbsp; pm`
         } else {
             timeLabel.innerHTML = `The time is ${timeHours}:${String(timeMinutes).padStart(2, '0')} am.<br> Today is ${weekDays[time.getDay()]} ${month[time.getMonth()]} ${time.getDate()}, ${time.getFullYear()}.`
+            bigClockLabel.innerHTML = `${timeHours}:${String(timeMinutes).padStart(2, '0')} <span>:${String(timeSeconds).padStart(2, "0")}</span>&nbsp; am`
         }
     let periodList
     periodList = getNextScheduledPeriod(scheduleUsed)
     console.log(periodList)
     let timeEnd = periodList["time"]
+    
 
     console.log(timeEnd)
 
