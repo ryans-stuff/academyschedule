@@ -62,9 +62,6 @@
     justify-content: center;
     font-size: 14rem;
     font-weight: bolder;
-    position: fixed;
-    top: -50px;
-    left: 75px;
 }
 #bigClockLabel span 
 {
