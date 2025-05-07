@@ -99,7 +99,7 @@ function getNextScheduledPeriod(schedule) {
         bigClock = false
 
         bigClockLabel.style.display = "none"
-        timeelapsedLabel.style.display = "flex"
+        timeelapsedLabel.style.display = "block"
         timeLabel.style.display = "block"
         bathroom.style.display = "flex"
         periodEndLabel.style.display = "flex"
