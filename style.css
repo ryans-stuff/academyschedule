@@ -1,22 +1,27 @@
 @font-face {
     font-family: Gordita;
-    src: url(Gordita-Black.otf);
+    src: url(Gordita-Font/Gordita-Black.otf);
 }
 
 @font-face {
     font-family: Gordita Reg;
-    src: url(Gordita-Bold.otf);
+    src: url(Gordita-Font/Gordita-Bold.otf);
 }
 
 @font-face {
     font-family: Gordita Thin;
-    src: url(Gordita-Medium.otf);
+    src: url(Gordita-Font/Gordita-Medium.otf);
 }
 
 :root
 {
     background-color: #1a1a1a;
     margin: 0 0 0 0;
+}
+
+::-webkit-scrollbar
+{
+    display: none;
 }
 
 #title
@@ -44,6 +49,28 @@
 {
     filter: drop-shadow(0px 30px 0px #0f0f0f);
     font-size: 92px;
+}
+
+#bigClockLabel
+{
+    font-family: Gordita Reg;
+    text-align: center;
+    color: #fafafa;
+    text-align: center;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 14rem;
+    font-weight: bolder;
+    position: fixed;
+    top: -50px;
+    left: 75px;
+}
+#bigClockLabel span 
+{
+    font-size: 5rem;
+    position: relative;
+    top: 60px;
 }
 
 #time
