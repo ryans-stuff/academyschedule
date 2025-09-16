@@ -1,13 +1,13 @@
 let periodLength = 52 * 60
 let periodInterval = 3
 let startOfDay = 8 * 3600;
-let endOfDay = 16 * 3600;
+let endOfDay = (15 * 3600) + (52*60);
 let dayEnded = false
 
 
 
 const weekDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-const normalSchedule = {0: 8*3600, 1: ((8*3600)+(48*60)), 2: ((9*3600)+(45*60)), 3: ((10*3600)+(37*60)), 4:((11*3600)+(29*60)), 5: ((12*3600)+(21*60)), 6: ((13*3600)+(13*60)), 7: ((14*3600)+(5*60)), 8: ((14*3600)+(57*60)), 9: ((15*3600)+(49*60))}
+const normalSchedule = {0: 8*3600, 1: ((8*3600)+(44*60)), 2: ((9*3600)+(37*60)), 3: ((10*3600)+(16*60)), 4:((11*3600)+(4*60)), 5: ((11*3600)+(52*60)), 6: ((12*3600)+(40*60)), 7: ((13*3600)+(28*60)), 8: ((14*3600)+(16*60)), 9: ((15*3600)+(4*60)), 10:((15*3600)+(52*60))}
 const earlyWednesday = {0: 8*3600, 1:((8*3600)+(35*60)), 2: ((9*3600)+(14*60)), 3: ((9*3600)+(53*60)), 4: ((10*3600)+(32*60)), 5: ((11*3600)+(11*60)), 6:((11*3600)+(50*60)), 7: ((12*3600)+(29*60)), 8:((13*3600)+(8*60)), 9: ((13*3600)+(47*60))}
 const threepmSchedule = {0: 8*3600, 1: ((8*3600)+ (42*60)), 2: ((9*3600)+(28*60)), 3: ((10*3600)+(14*60)), 4: ((11*3600)), 5: ((11*3600)+(46*60)), 6: ((12*3600)+(32*60)), 7: ((13*3600)+(18*60)), 8: ((14*3600)+(4*60)), 9: ((14*3600)+(50*60))}
 const mockTest = {0: 8*3600, 1: ((8*3600)+(40*60)), 2: ((9*3600)+(20*60)), 3: ((10*3600)), 4: ((13*3600)+(45*60))}
@@ -26,6 +26,10 @@ function enabledSchedule(sched){
     } else if (sched == threepmSchedule){
         endOfDay = 15*3600
     }
+}
+
+function showWifi(){
+
 }
 
 function getNextScheduledPeriod(schedule) {
@@ -150,10 +154,10 @@ setInterval(() => {
         return
     }
     if (afternoon) {
-            timeLabel.innerHTML = `The time is ${timeHours}:${String(timeMinutes).padStart(2, '0')} pm. <br>Today is ${weekDays[time.getDay()]} ${month[time.getMonth()]} ${time.getDate()}, ${time.getFullYear()}`
+            timeLabel.innerHTML = `The time is ${timeHours}:${String(timeMinutes).padStart(2, '0')} pm. <br>Today is ${weekDays[time.getDay()]} ${month[time.getMonth()]} ${time.getDate()},&nbsp;${time.getFullYear()}`
             bigClockLabel.innerHTML = `${timeHours}:${String(timeMinutes).padStart(2, '0')} <span>:${String(timeSeconds).padStart(2, "0")}</span>&nbsp; pm`
         } else {
-            timeLabel.innerHTML = `The time is ${timeHours}:${String(timeMinutes).padStart(2, '0')} am.<br> Today is ${weekDays[time.getDay()]} ${month[time.getMonth()]} ${time.getDate()}, ${time.getFullYear()}.`
+            timeLabel.innerHTML = `The time is ${timeHours}:${String(timeMinutes).padStart(2, '0')} am.<br> Today is ${weekDays[time.getDay()]} ${month[time.getMonth()]} ${time.getDate()},&nbsp;${time.getFullYear()}.`
             bigClockLabel.innerHTML = `${timeHours}:${String(timeMinutes).padStart(2, '0')} <span>:${String(timeSeconds).padStart(2, "0")}</span>&nbsp; am`
         }
     let periodList
@@ -170,6 +174,8 @@ setInterval(() => {
     let timeLeftMin = Math.floor(timeLeft/60)%60
     let timeLeftSec = timeLeft%60
     console.log(timeLeft)
+
+    
 
     if (timeLeft < 2280 && timeLeft > 720){
         bathroom.innerHTML = "Bathrooms are open!"
@@ -243,7 +249,7 @@ setInterval(() => {
         dayLeftString += `${dayLeftMin} minutes,`
     }
     if (dayleftSec > 0) {
-        dayLeftString += ` and ${dayleftSec} seconds`
+        dayLeftString += `&nbsp;and ${dayleftSec} seconds`
     }
 
     dayLeftString += " left in the day."
@@ -252,7 +258,11 @@ setInterval(() => {
 
     timeelapsedLabel.innerHTML = `There is ${timeLeftString} in ${periodString}.`
 
-    
+    if (timeLeft < (44*60) && currentPeriod != 3 && currentPeriod != 2){
+        timeelapsedLabel.innerHTML `There is ${timeLeftString} in transition time to ${periodString}.`
+    } else if (timeLeft < (35*60) && currentPeriod == 3){
+        timeelapsedLabel.innerHTML `There is ${timeLeftString} in transition time to ${periodString}.`
+    }
 
     
 }, 1000);
