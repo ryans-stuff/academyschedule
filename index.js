@@ -8,10 +8,12 @@ let dayEnded = false
 
 const weekDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const normalSchedule = {0: 8*3600, 1: ((8*3600)+(44*60)), 2: ((9*3600)+(37*60)), 3: ((10*3600)+(16*60)), 4:((11*3600)+(4*60)), 5: ((11*3600)+(52*60)), 6: ((12*3600)+(40*60)), 7: ((13*3600)+(28*60)), 8: ((14*3600)+(16*60)), 9: ((15*3600)+(4*60)), 10:((15*3600)+(52*60))}
-const earlyWednesday = {0: 8*3600, 1:((8*3600)+(35*60)), 2: ((9*3600)+(14*60)), 3: ((9*3600)+(53*60)), 4: ((10*3600)+(32*60)), 5: ((11*3600)+(11*60)), 6:((11*3600)+(50*60)), 7: ((12*3600)+(29*60)), 8:((13*3600)+(8*60)), 9: ((13*3600)+(47*60))}
+const earlyWednesday = {0: 8*3600, 1:((8*3600)+(35*60)), 2: ((9*3600)+(14*60)), 4: ((9*3600)+(53*60)), 5: ((10*3600)+(32*60)), 6: ((11*3600)+(11*60)), 7:((11*3600)+(50*60)), 8: ((12*3600)+(29*60)), 9:((13*3600)+(8*60)), 10: ((13*3600)+(47*60))}
 const threepmSchedule = {0: 8*3600, 1: ((8*3600)+ (42*60)), 2: ((9*3600)+(28*60)), 3: ((10*3600)+(14*60)), 4: ((11*3600)), 5: ((11*3600)+(46*60)), 6: ((12*3600)+(32*60)), 7: ((13*3600)+(18*60)), 8: ((14*3600)+(4*60)), 9: ((14*3600)+(50*60))}
 const mockTest = {0: 8*3600, 1: ((8*3600)+(40*60)), 2: ((9*3600)+(20*60)), 3: ((10*3600)), 4: ((13*3600)+(45*60))}
 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+  
 let scheduleUsed = normalSchedule
 let bigClock = false
 const ewBtn = document.getElementById("ew")
@@ -28,9 +30,26 @@ function enabledSchedule(sched){
     }
 }
 
-function showWifi(){
+const schoolClosedDays = [
+    "20251111", // Veterans Day
+    "20251127", // Thanksgiving
+    "20251128", // Thanksgiving
+    "20251223", // Start of winter break
+    "20251224",
+    "20251225",
+    "20251226",
+    "20251227",
+    "20251228",
+    "20251229",
+    "20251230",
+    "20251231",
+    "20260101",
+    "20260102",
+    "20260103"
+  ];
 
-}
+  const daysOff = new Set(schoolClosedDays);
+
 
 function getNextScheduledPeriod(schedule) {
     // Get current time in seconds since midnight
@@ -113,6 +132,45 @@ function getNextScheduledPeriod(schedule) {
     }
   }
 
+  function getLetterDay(targetDate, daysOff) {
+    // Letter cycle
+    const letters = ["A", "B", "C", "D"];
+  
+    // Starting point: Oct 13, 2025 is an A day
+    const startDate = new Date(2025, 9, 13); // Months are 0-indexed → 9 = October
+    let count = 0;
+  
+    // Helper to format YYYYMMDD
+    const formatDate = (d) =>
+      d.toISOString().slice(0, 10).replace(/-/g, "");
+  
+    // If target is before start, return null
+    if (targetDate < startDate) return null;
+  
+    // Loop day by day from start to target
+    let current = new Date(startDate);
+    while (current <= targetDate) {
+      const dayStr = formatDate(current);
+      const dayOfWeek = current.getDay(); // 0=Sun, 6=Sat
+  
+      // Skip weekends and days off
+      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+      const isDayOff = daysOff.has(dayStr);
+  
+      if (!isWeekend && !isDayOff) {
+        if (formatDate(current) === formatDate(targetDate)) {
+          // Found the target date in the cycle
+          return letters[count % letters.length];
+        }
+        count++;
+      }
+  
+      current.setDate(current.getDate() + 1);
+    }
+  
+    return null; // Shouldn't hit this normally
+  }
+
 setInterval(() => {
     let timeelapsedLabel = document.getElementById("timeElapsed")
     let timeLabel = document.getElementById("time")
@@ -120,6 +178,7 @@ setInterval(() => {
     const periodEndLabel = document.getElementById("periodEnd")
     const dayEndLabel = document.getElementById("dayEnd")
     const bigClockLabel = document.getElementById("bigClockLabel")
+    const dayRot = document.getElementById("dayrotation")
 
     let time = new Date();
     let timeMinutes = time.getMinutes();
@@ -128,6 +187,14 @@ setInterval(() => {
     let timeReal = (timeHours * 3600) + (timeMinutes * 60) + timeSeconds ;
     let afternoon = false
 
+
+    let letterDay = getLetterDay(new Date(time.getFullYear(), time.getMonth(), time.getDate()), daysOff)
+    if (letterDay == null){
+        dayRot.innerHTML = ``
+    } else {
+        dayRot.innerHTML = `Today is a(n) ${letterDay} day`
+    }
+    
     if (timeHours > 12){
         timeHours -= 12
         afternoon = true
@@ -140,7 +207,7 @@ setInterval(() => {
         timeLabel.innerHTML = ""
         bathroom.innerHTML = ""
         periodEndLabel.innerHTML = ""
-        if (weekDays[time.getDay()] == "Friday"){
+        if (weekDays[time.getDay()] == "Friday" || weekDays[time.getDay()] == "Saturday"){
             dayEndLabel.innerHTML = "It's the weekend relax!"
         } else {
             dayEndLabel.innerHTML = "Get ready for the next day tomorrow at 8 a.m!"
