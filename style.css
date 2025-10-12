@@ -13,6 +13,11 @@
     src: url(Gordita-Medium.otf);
 }
 
+@font-face {
+    font-family: Gordita Thinner;
+    src: url(Gordita-Regular.otf);
+}
+
 :root
 {
     background-color: #1a1a1a;
@@ -151,8 +156,18 @@
 .sched-btn
 {
     font-family: Gordita Thin;
+    font-size: 1rem;
     color: #fafafa;
     background-color: #7b2cbf;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.sched-btn:hover
+{
+    background-color: #65259e;
 }
 
 #credits
@@ -210,3 +225,103 @@
     border-collapse: collapse;
 }
 
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #090909;
+    padding: 25px;
+    filter: drop-shadow(5px 5px 5px);
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    font-family: Gordita Reg;
+    color: #fff;
+  }
+
+  .header button {
+    background: #131313;
+    color: white;
+    font-family: Gordita Thin;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .header button:hover {
+    background: #242424;
+  }
+
+  .month-label {
+    font-size: 1.3rem;
+    font-weight: bold;
+    min-width: 200px;
+    text-align: center;
+  }
+
+  .day {
+    background: #0f0f0f;
+    padding: 8px;
+    border-radius: 8px;
+    min-height: 100px;
+    font-family: Gordita Thin;
+    color: #fafafa;
+    display: flex;
+    flex-direction: column;
+  }
+  .day-number {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .event {
+    background: #007bff;
+    color: white;
+    font-family: Gordita Thinner;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-top: 2px;
+    cursor: pointer;
+    line-height: 1.2;
+  }
+  .event:hover {
+    background: #0056b3;
+  }
+
+  .weekday-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    max-width: 1200px;
+    font-family: Gordita;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: #fff;
+  }
+
+  #dayrotation {
+    font-family: Gordita Reg;
+    text-align: center;
+    color: #fafafa;
+    font-size: 48px;
+    font-weight: bolder;
+  }
+
+  #eventtime {
+    font-family: Gordita Reg;
+    color: #fafafa;
+    cursor: pointer;
+    text-decoration: none;
+  }
