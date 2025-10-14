@@ -31,6 +31,8 @@ function enabledSchedule(sched){
 }
 
 const schoolClosedDays = [
+    "20251010",
+    "20251013",
     "20251111", // Veterans Day
     "20251127", // Thanksgiving
     "20251128", // Thanksgiving
@@ -137,7 +139,7 @@ function getNextScheduledPeriod(schedule) {
     const letters = ["A", "B", "C", "D"];
   
     // Starting point: Oct 13, 2025 is an A day
-    const startDate = new Date(2025, 9, 13); // Months are 0-indexed → 9 = October
+    const startDate = new Date(2025, 9, 8); // Months are 0-indexed → 9 = October
     let count = 0;
   
     // Helper to format YYYYMMDD
@@ -192,7 +194,11 @@ setInterval(() => {
     if (letterDay == null){
         dayRot.innerHTML = ``
     } else {
-        dayRot.innerHTML = `Today is a(n) ${letterDay} day`
+        if (letterDay == "A"){
+            dayRot.innerHTML = `Today is an ${letterDay} day`
+        } else {
+            dayRot.innerHTML = `Today is a ${letterDay} day`
+        }
     }
     
     if (timeHours > 12){
@@ -300,7 +306,9 @@ setInterval(() => {
     
     periodEndLabel.innerHTML = `${periodString} ends at ${periodList["formatTime"]}.`
     if (currentPeriod == 0){
-            `School starts at ${periodList["formatTime"]}`
+            periodEndLabel.innerHTML = `School starts at ${periodList["formatTime"]}`
+    } else {
+         periodEndLabel.innerHTML = `${periodString} ends at ${periodList["formatTime"]}.`
     }
     
     let dayLeft = endOfDay - timeReal
@@ -323,7 +331,12 @@ setInterval(() => {
 
     dayEndLabel.innerHTML = dayLeftString
 
-    timeelapsedLabel.innerHTML = `There is ${timeLeftString} in ${periodString}.`
+    if (currentPeriod == 0){
+        timeelapsedLabel.innerHTML = `There is ${timeLeftString} until school starts.`
+    } else {
+        timeelapsedLabel.innerHTML = `There is ${timeLeftString} in ${periodString}.`
+    }
+    
 
     if (timeLeft < (44*60) && currentPeriod != 3 && currentPeriod != 2){
         timeelapsedLabel.innerHTML `There is ${timeLeftString} in transition time to ${periodString}.`
