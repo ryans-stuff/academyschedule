@@ -204,6 +204,10 @@ setInterval(() => {
     if (timeHours > 12){
         timeHours -= 12
         afternoon = true
+    } else {
+      if (timeHours == 12){
+          afternoon = true
+      }
     }
 
     
@@ -346,3 +350,4 @@ setInterval(() => {
 
     
 }, 1000);
+
