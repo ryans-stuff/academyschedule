@@ -33,6 +33,7 @@ function enabledSchedule(sched){
 const schoolClosedDays = [
     "20251010",
     "20251013",
+    "20251104",
     "20251111", // Veterans Day
     "20251127", // Thanksgiving
     "20251128", // Thanksgiving
@@ -350,4 +351,5 @@ setInterval(() => {
 
     
 }, 1000);
+
 
