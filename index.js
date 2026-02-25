@@ -143,8 +143,8 @@ function getNextScheduledPeriod(schedule) {
     const letters = ["A", "B", "C", "D"];
   
     // Starting point: Oct 13, 2025 is an A day
-    const startDate = new Date(2025, 9, 8); // Months are 0-indexed → 9 = October
-    let count = 0;
+    const startDate = new Date(2026, 2, 25); // Months are 0-indexed → 9 = October
+    let count = 4;
   
     // Helper to format YYYYMMDD
     const formatDate = (d) =>
@@ -354,6 +354,7 @@ setInterval(() => {
 
     
 }, 1000);
+
 
 
 
