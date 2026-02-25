@@ -48,7 +48,10 @@ const schoolClosedDays = [
     "20251231",
     "20260101",
     "20260102",
-    "20260103"
+    "20260103",
+    '20260126',
+    '20260223',
+    '20260224'
   ];
 
   const daysOff = new Set(schoolClosedDays);
@@ -351,5 +354,6 @@ setInterval(() => {
 
     
 }, 1000);
+
 
 
